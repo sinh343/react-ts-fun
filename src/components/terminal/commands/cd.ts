@@ -1,9 +1,8 @@
-import { RouteComponentProps } from 'react-router';
-
+import { Props as TerminalProps } from 'components/terminal'
 
 export class TerminalArgumentError extends Error { }
 
-export function cd(props: RouteComponentProps, location: string) {
+export function cd(props: TerminalProps, location: string) {
   if (!location) {
     throw new TerminalArgumentError('args is empty')
   }

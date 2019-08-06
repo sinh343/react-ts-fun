@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(actions, dispatch)
 }
 
-type Props = ReturnType<typeof mapDispatchToProps> & RouteComponentProps;
+export type Props = ReturnType<typeof mapDispatchToProps> & RouteComponentProps;
 
 
 const parseSubmitedValue = (submitedValue: string) => {
