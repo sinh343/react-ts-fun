@@ -1,24 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
-import { actions } from './actions'
+import { actions } from './actions';
+import { commands, errors, getCommand } from './commands';
+import { TerminalArgumentError } from './commands/cd';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(actions, dispatch)
 }
 
-type Props = ReturnType<typeof mapDispatchToProps>;
+type Props = ReturnType<typeof mapDispatchToProps> & RouteComponentProps;
 
-const commands = [
-  'ls',
-  'pwd',
-  'cd',
-  'run',
-]
-
-const errors = {
-  INVALID_COMMAND: (command: string) => `command not found: ${command}`
-}
 
 const parseSubmitedValue = (submitedValue: string) => {
   if (!submitedValue) return;
@@ -43,6 +36,14 @@ function BaseTerminal(props: Props) {
       return props.submitTerminal({ command: '', commandArgs: [] });
     }
     setError('');
+    try {
+      getCommand(command)(props, ...commandArgs);
+    } catch (error) {
+      if (error instanceof TerminalArgumentError) {
+        setError(errors.TOO_FEW_ARGUMENTS(command, commandArgs))
+      }
+      setError(error.message)
+    }
     props.submitTerminal({ command, commandArgs });
   }
 
@@ -56,5 +57,5 @@ function BaseTerminal(props: Props) {
   );
 }
 
-export const Terminal = connect(null, mapDispatchToProps)(BaseTerminal)
+export const Terminal = withRouter(connect(null, mapDispatchToProps)(BaseTerminal))
 export default Terminal;

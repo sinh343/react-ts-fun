@@ -1,8 +1,9 @@
 import React from 'react';
-import {Home} from 'components/pages/home'
+import { Router } from 'components/router';
+
 const App: React.FC = () => {
   return (
-    <Home/>
+    <Router />
   );
 }
 
