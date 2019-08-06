@@ -18,7 +18,7 @@ function BaseStateView(props: Props) {
   }
 
   const stateBlocks = Object.keys(props.state)
-    .filter((key) => key[0] !== '_') // removing private state
+    .filter((key) => !key.startsWith('_')) // removing private state
     .map((key, index) => renderBlock({ [key]: props.state[key as keyof typeof props.state] }, index))
 
 
