@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Dispatch, bindActionCreators } from 'redux';
+import { actions } from './actions'
 
-const submitTerminal = (terminalValue: string) => {
-  console.log(`implement redux state with value: ${terminalValue}`);
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return bindActionCreators(actions, dispatch)
 }
 
+type Props = ReturnType<typeof mapDispatchToProps>;
 
-export function Terminal(props: {}) {
+function BaseTerminal(props: Props) {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    submitTerminal(value);
+    props.submitTerminal(value);
     setValue('');
   }
 
@@ -21,4 +25,5 @@ export function Terminal(props: {}) {
   );
 }
 
+export const Terminal = connect(null, mapDispatchToProps)(BaseTerminal)
 export default Terminal;
