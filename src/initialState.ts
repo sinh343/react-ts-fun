@@ -1,5 +1,6 @@
 export const initialState = {
   terminal: {
-    submitedValue: '',
+    command: '',
+    commandArgs: [] as string[]
   }
 }
