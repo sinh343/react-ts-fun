@@ -8,10 +8,10 @@ export type TerminalAction = (
 )
 
 
-export const TerminalReducer = (state = initialState.terminal as Partial<typeof initialState["terminal"]>, action: TerminalAction) => {
+export const TerminalReducer = (state = initialState.terminal, action: TerminalAction) => {
   switch (action.type) {
     case TerminalActions.SUBMIT:
-      const { command, commandArgs } = action.payload as ReturnType<typeof actions.submitTerminal>["payload"];
+      const { command = '', commandArgs = [] } = action.payload as ReturnType<typeof actions.submitTerminal>["payload"];
       return { ...state, command, commandArgs }
     case TerminalActions.LS:
       return { ...state, ls: action.payload }
