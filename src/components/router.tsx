@@ -3,6 +3,7 @@ import { Home } from 'components/pages/home'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import GenericPage from 'components/pages/shared/genericPage';
 import TestParentPage from './pages/shared/testParentPage';
+import { Pokemon } from './pages/pokemon';
 
 const [Page1, Page2, Page3] = [1, 2, 3].map(num => <GenericPage title={num} />)
 
@@ -27,7 +28,7 @@ export function Router() {
         <Route exact path='/2' render={() => Page2} />
         <Route exact path='/3' render={() => Page3} />
         <Route path='/4' component={TestParentPage} />
-        {/* <Route exact pa></Route> */}
+        <Route exact path='/pokemon' component={Pokemon} />
       </Switch>
     </BrowserRouter>
   );
