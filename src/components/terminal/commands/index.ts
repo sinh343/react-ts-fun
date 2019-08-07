@@ -1,22 +1,28 @@
 import { cd, TerminalArgumentError } from './cd';
-
+import { ls } from './ls';
+export enum Command {
+  LS = 'ls',
+  PWD = 'pwd',
+  CD = 'cd',
+  RUN = 'run'
+}
 export const commands = [
-  'ls',
-  'pwd',
-  'cd',
-  'run',
+  Command.LS,
+  Command.PWD,
+  Command.CD,
+  Command.RUN,
 ]
 
 export function getCommand(command: string) {
   switch (command) {
-    case 'ls':
-      return console.log
-    case 'pwd':
-      return console.log
-    case 'cd':
-      return cd
-    case 'run':
-      return console.log
+    case Command.LS:
+      return ls;
+    case Command.PWD:
+      return console.log;
+    case Command.CD:
+      return cd;
+    case Command.RUN:
+      return console.log;
     default:
       return console.log;
   }

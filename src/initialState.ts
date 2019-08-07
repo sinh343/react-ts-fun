@@ -1,6 +1,7 @@
 export const initialState = {
   terminal: {
     command: '',
-    commandArgs: [] as string[]
+    commandArgs: [] as string[],
+    ls: [] as string[]
   }
 }

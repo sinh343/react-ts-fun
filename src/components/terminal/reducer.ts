@@ -3,16 +3,19 @@ import { Action } from 'redux';
 import { initialState } from 'initialState';
 
 export type TerminalAction = (
-  Action<TerminalActions.SUBMIT>
-  & { payload: ReturnType<typeof actions.submitTerminal>["payload"] }
+  Action<TerminalActions>
+  & { payload: any }
 )
 
 
 export const TerminalReducer = (state = initialState.terminal, action: TerminalAction) => {
   switch (action.type) {
     case TerminalActions.SUBMIT:
-      const { command, commandArgs } = action.payload;
+      const { command, commandArgs } = action.payload as ReturnType<typeof actions.submitTerminal>["payload"];
       return { ...state, command, commandArgs }
+    case TerminalActions.LS:
+      console.log(action.payload)
+      return { ...state, ls: action.payload }
     default:
       return state
   }

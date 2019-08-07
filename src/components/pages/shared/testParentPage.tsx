@@ -4,9 +4,9 @@ import GenericPage from './genericPage';
 import { urls } from 'components/router';
 
 function BaseTestParentPage() {
-  const rootKeys = Object.keys(urls.root);
+  const rootKeys = Object.keys(urls['/']);
   const basePath = rootKeys[rootKeys.length - 1];
-  const childrenPath = Object.keys(urls.root["/4"]);
+  const childrenPath = Object.keys(urls['/']["/4"]);
   return (
     <div>
       <h1>4</h1>

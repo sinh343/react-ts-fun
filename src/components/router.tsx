@@ -7,7 +7,7 @@ import TestParentPage from './pages/shared/testParentPage';
 const [Page1, Page2, Page3] = [1, 2, 3].map(num => <GenericPage title={num} />)
 
 export const urls = {
-  root: {
+  '/': {
     '/1': {},
     '/2': {},
     '/3': {},

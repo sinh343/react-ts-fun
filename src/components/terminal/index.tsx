@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
 import { actions } from './actions';
-import { commands, errors, getCommand } from './commands';
+import { commands, errors, getCommand, Command } from './commands';
 import { TerminalArgumentError } from './commands/cd';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { initialState } from 'initialState';
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(actions, dispatch)
 }
+const mapDispatchToState = (state: typeof initialState) => {
+  const { terminal } = state;
+  return {
+    terminal
+  }
+}
 
-export type Props = ReturnType<typeof mapDispatchToProps> & RouteComponentProps;
+export type Props = ReturnType<typeof mapDispatchToState> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps;
 
 
 const parseSubmitedValue = (submitedValue: string) => {
@@ -31,7 +38,7 @@ function BaseTerminal(props: Props) {
     const [command, ...commandArgs] = parseSubmitedValue(value);
     setValue('');
 
-    if (!commands.includes(command)) {
+    if (!commands.includes(command as Command)) {
       setError(errors.INVALID_COMMAND(command));
       return props.submitTerminal({ command: '', commandArgs: [] });
     }
@@ -46,16 +53,19 @@ function BaseTerminal(props: Props) {
     }
     props.submitTerminal({ command, commandArgs });
   }
-
+  const lsBlock = (item:string,key:number) => {
+    return (<ul key={key}>{item}</ul>)
+  }
   return (
     <form onSubmit={handleSubmit}>
       <div>
         $<input type="text" onChange={e => setValue(e.target.value)} value={value} />
         {error && <span>{error}</span>}
+        {props.terminal.ls && props.terminal.ls.map(lsBlock)}
       </div>
     </form>
   );
 }
 
-export const Terminal = withRouter(connect(null, mapDispatchToProps)(BaseTerminal))
+export const Terminal = withRouter(connect(mapDispatchToState, mapDispatchToProps)(BaseTerminal))
 export default Terminal;
