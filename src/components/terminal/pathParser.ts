@@ -25,9 +25,9 @@ export function pathParser(props: TerminalProps, location: string): string[] {
     return fullRoutes
 
   }
-  if (location.startsWith('~') || location.startsWith('/')) {
+  if (location.startsWith('~') || location.startsWith('')) {
     // we have an absolute path
-    if (routes[0] === '~' || routes[0] === '/') return routes.length === 1 ? [] : routes.slice(1);
+    if (routes[0] === '~' || routes[0] === '') return routes.length === 1 ? [] : routes.slice(1);
 
     console.log(routes);
     throw new TerminalNavigationError('invalid syntax for naviagation')
