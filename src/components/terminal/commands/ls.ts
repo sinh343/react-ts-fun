@@ -1,33 +1,45 @@
 import { Props as TerminalProps } from 'components/terminal'
 import { urls } from 'components/router';
-
-export class TerminalArgumentError extends Error { }
+import { pathParser } from '../pathParser';
 
 export function ls(props: TerminalProps, location: string) {
-  if (!location) {
-    const lsRoute = props.location.pathname.split('/').slice(1);
-    console.log(lsRoute);
-    return props.submitLS(constructPaths(lsRoute))
-  }
-  if (location.startsWith('~') || location.startsWith('/')) {
-    if (!location.startsWith('~') || location.startsWith('~/')) {
-      return props.submitLS(constructPaths(location.split('/').slice(1)));
-    } throw new Error('invalid syntax for naviagation')
-  }
-  console.log(props.location);
-  return props.submitLS(constructPaths([]))
+  const lsRoute = pathParser(props, location);
+  console.log(lsRoute)
+  return props.submitLS(constructPaths(lsRoute))
 }
+
+export class TerminalTerminatedPathError extends Error { }
 
 export function constructPaths(lsRoute: string[]) {
   // 'ls /4/2' => lsRoute = [4,2]\
-  
-  let reducedUrls = { ...urls['/'] };
-  lsRoute.forEach((path, index) => {
-    if (path === '') return;
-    const key = `/${path}`;
-    reducedUrls = (reducedUrls as any)[key]
-  })
-  
-  return Object.keys(reducedUrls);
 
+  let reducedUrls = { ...urls['/'] };
+
+  try {
+    lsRoute.forEach((path, index) => {
+      if (path === '') return;
+      const key = `/${path}`;
+      try {
+        const newUrls = { ...(reducedUrls as any)[key] }
+        reducedUrls = { ...newUrls };
+
+      } catch (error) {
+
+        if (error instanceof TypeError) {
+          if (reducedUrls as any === {}) {
+            throw new TerminalTerminatedPathError();
+          }
+          return reducedUrls
+        }
+        throw error;
+      }
+    })
+  } catch (error) {
+    if (error instanceof TerminalTerminatedPathError) {
+      return Object.keys(reducedUrls);
+    }
+    throw error;
+  }
+
+  return Object.keys(reducedUrls);
 }
