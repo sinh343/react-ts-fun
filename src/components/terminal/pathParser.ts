@@ -9,7 +9,7 @@ export function pathParser(props: TerminalProps, location: string): string[] {
   }
 
   const routes = location.split('/');
-
+  console.log(routes)
   if (location.startsWith('.')) {
     // dot relative path
     let dotRoute: string[] = [];
@@ -25,13 +25,14 @@ export function pathParser(props: TerminalProps, location: string): string[] {
     return fullRoutes
 
   }
-  if (location.startsWith('~') || location.startsWith('')) {
+  if (location.startsWith('~') || location.startsWith('/')) {
     // we have an absolute path
-    if (routes[0] === '~' || routes[0] === '') return routes.length === 1 ? [] : routes.slice(1);
+    if (routes[0] === '~' || routes[0] === '') return routes.length === 1 ? [] : routes;
 
     console.log(routes);
     if (routes.length > 1) throw new TerminalNavigationError('invalid syntax for naviagation')
   }
-  // lastly relative without dot   
+  // lastly relative without dot
+  console.log(routes);
   return `${props.location.pathname}/${location}`.split('/');
 }

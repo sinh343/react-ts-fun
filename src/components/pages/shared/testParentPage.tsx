@@ -8,13 +8,11 @@ function BaseTestParentPage() {
   const basePath = rootKeys[rootKeys.length - 1];
   const childrenPath = Object.keys(urls['/']["/4"]);
   return (
-    <div>
-      <h1>4</h1>
-      <Switch>
-        <Route path={`${basePath}${childrenPath[0]}`} render={() => <GenericPage title={'4/1'} />} />
-        <Route path={`${basePath}${childrenPath[1]}`} render={() => <GenericPage title={'4/2'} />} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route path={`${basePath}`} exact render={() => <h1>4</h1>} />
+      <Route path={`${basePath}${childrenPath[0]}`} render={() => <GenericPage title={'4/1'} />} />
+      <Route path={`${basePath}${childrenPath[1]}`} render={() => <GenericPage title={'4/2'} />} />
+    </Switch>
   );
 }
 

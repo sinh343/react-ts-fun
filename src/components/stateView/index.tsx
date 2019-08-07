@@ -23,9 +23,12 @@ function BaseStateView(props: Props) {
 
 
   return (
-    <ul>
-      {stateBlocks}
-    </ul>
+    <section className='section'>
+      <ul>
+        {stateBlocks}
+      </ul>
+    </section>
+
   )
 }
 

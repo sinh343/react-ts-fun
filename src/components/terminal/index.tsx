@@ -51,19 +51,19 @@ function BaseTerminal(props: Props) {
       }
       setError(error.message)
     }
-    props.submitTerminal({ command, commandArgs, ls:[] });
+    props.submitTerminal({ command, commandArgs, ls: [] });
   }
-  const lsBlock = (item:string,key:number) => {
+  const lsBlock = (item: string, key: number) => {
     return (<ul key={key}>{item}</ul>)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <section className='section'>
+      <form onSubmit={handleSubmit}>
         $<input type="text" onChange={e => setValue(e.target.value)} value={value} />
-        {error && <span>{error}</span>}
-        {props.terminal.ls && props.terminal.ls.map(lsBlock)}
-      </div>
-    </form>
+      </form>
+      {error && <span>{error}</span>}
+      {props.terminal.ls && props.terminal.ls.map(lsBlock)}
+    </section>
   );
 }
 
