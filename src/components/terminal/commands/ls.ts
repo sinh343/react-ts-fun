@@ -4,6 +4,7 @@ import { pathParser } from '../pathParser';
 
 export function ls(props: TerminalProps, location: string) {
   const lsRoute = pathParser(props, location);
+  console.log(lsRoute)
   return props.submitLS(constructPaths(lsRoute))
 }
 

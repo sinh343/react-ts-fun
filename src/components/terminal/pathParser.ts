@@ -8,10 +8,11 @@ export function pathParser(props: TerminalProps, location: string): string[] {
     return lsRoute
   }
   if (location.startsWith('~') || location.startsWith('/')) {
+    // we have an absolute path
     if (!location.startsWith('~') || location.startsWith('~/')) {
       return location.split('/').slice(1);
     } throw new TerminalNavigationError('invalid syntax for naviagation')
   }
   // return []
-  return location.split('/');
+  return `${props.location.pathname}/${location}`.split('/');
 }
