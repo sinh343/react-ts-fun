@@ -10,4 +10,5 @@ export function cd(props: TerminalProps, location: string) {
   const pathRoutes = pathParser(props, location);
   console.log(pathRoutes);
   props.history.push(pathRoutes.join('/'));
+  props.submitLS([] as string[]) // reset ls list every command
 }
