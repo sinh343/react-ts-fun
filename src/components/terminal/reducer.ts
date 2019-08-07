@@ -14,7 +14,6 @@ export const TerminalReducer = (state = initialState.terminal, action: TerminalA
       const { command, commandArgs } = action.payload as ReturnType<typeof actions.submitTerminal>["payload"];
       return { ...state, command, commandArgs }
     case TerminalActions.LS:
-      console.log(action.payload)
       return { ...state, ls: action.payload }
     default:
       return state
