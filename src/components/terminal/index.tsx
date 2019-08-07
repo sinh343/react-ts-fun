@@ -51,7 +51,7 @@ function BaseTerminal(props: Props) {
       }
       setError(error.message)
     }
-    props.submitTerminal({ command, commandArgs });
+    props.submitTerminal({ command, commandArgs, ls:[] });
   }
   const lsBlock = (item:string,key:number) => {
     return (<ul key={key}>{item}</ul>)

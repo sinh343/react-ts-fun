@@ -30,7 +30,7 @@ export function pathParser(props: TerminalProps, location: string): string[] {
     if (routes[0] === '~' || routes[0] === '') return routes.length === 1 ? [] : routes.slice(1);
 
     console.log(routes);
-    throw new TerminalNavigationError('invalid syntax for naviagation')
+    if (routes.length > 1) throw new TerminalNavigationError('invalid syntax for naviagation')
   }
   // lastly relative without dot   
   return `${props.location.pathname}/${location}`.split('/');
