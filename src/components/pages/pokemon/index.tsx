@@ -18,7 +18,7 @@ export function Pokemon(props: Props) {
   }, []);
 
   useEffect(() => {
-    const filtered = pokemonList.filter(pokemon => pokemon.name.startsWith(filter));
+    const filtered = pokemonList.filter(pokemon => (pokemon.name.search(filter) >= 0));
     if (!isEqual(filteredList, filtered)) {
       setFilteredList(filtered)
     }
