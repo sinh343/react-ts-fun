@@ -7,7 +7,7 @@ const BasePokemon = (props: Props) => {
   const { name } = props;
   const classes = useStyles()
   const makeMainPokemon = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    props.history.push(name);
+    props.history.push(`pokemon/${name}`);
   }
   return (
     <div>

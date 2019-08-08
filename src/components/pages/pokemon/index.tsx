@@ -3,6 +3,8 @@ import { PokemonList } from './list';
 import { getFirstTwenty } from './api';
 import { Props as PokemonData } from './single';
 import { isEqual } from 'lodash';
+import { Switch, Route } from 'react-router';
+import {urls} from 'components/router';
 type Props = {};
 export function Pokemon(props: Props) {
   const [pokemonList, setPokemonList] = useState<PokemonData[]>([])
@@ -23,11 +25,20 @@ export function Pokemon(props: Props) {
       setFilteredList(filtered)
     }
   }, [filter, pokemonList, filteredList]);
-
+  const listSection = () => {
+    return (
+      <>
+        <span>filter:</span><input value={filter} onChange={e => setFilter(e.target.value)} />
+        <PokemonList pokemonList={filteredList} />
+      </>
+    )
+  }
+  const paths = Object.keys(urls);
   return (
     <section>
-      <span>filter:</span><input value={filter} onChange={e => setFilter(e.target.value)} />
-      <PokemonList pokemonList={filteredList} />
+      <Switch>
+        <Route exact path={paths[0]} />
+      </Switch>
     </section>
   )
 }
