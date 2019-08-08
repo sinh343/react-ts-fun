@@ -1,16 +1,19 @@
 import { cd, TerminalArgumentError } from './cd';
 import { ls } from './ls';
+import { clear } from './clear';
 export enum Command {
   LS = 'ls',
   PWD = 'pwd',
   CD = 'cd',
-  RUN = 'run'
+  RUN = 'run',
+  CLEAR = 'clear'
 }
 export const commands = [
   Command.LS,
   Command.PWD,
   Command.CD,
   Command.RUN,
+  Command.CLEAR,
 ]
 
 export function getCommand(command: string) {
@@ -23,6 +26,8 @@ export function getCommand(command: string) {
       return cd;
     case Command.RUN:
       return console.log;
+    case Command.CLEAR:
+      return clear
     default:
       return console.log;
   }
