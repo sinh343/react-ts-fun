@@ -6,6 +6,7 @@ import { isEqual } from 'lodash';
 type Props = {};
 export function Pokemon(props: Props) {
   const [pokemonList, setPokemonList] = useState<PokemonData[]>([])
+  const [filteredList, setFilteredList] = useState<PokemonData[]>([])
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -19,15 +20,15 @@ export function Pokemon(props: Props) {
   useEffect(() => {
     console.log(pokemonList)
     const filtered = pokemonList.filter(pokemon => pokemon.name.startsWith(filter));
-    if (!isEqual(pokemonList, filtered)) {
-      setPokemonList(filtered)
+    if (!isEqual(filteredList, filtered)) {
+      setFilteredList(filtered)
     }
-  }, [filter, pokemonList]);
+  }, [filter, pokemonList, filteredList]);
 
   return (
     <section>
       <span>filter:</span><input value={filter} onChange={e => setFilter(e.target.value)} />
-      <PokemonList pokemonList={pokemonList} />
+      <PokemonList pokemonList={filteredList} />
     </section>
   )
 }
