@@ -4,7 +4,8 @@ import { getFirstTwenty } from './api';
 import { Props as PokemonData } from './single';
 import { isEqual } from 'lodash';
 import { Switch, Route } from 'react-router';
-import {urls} from 'components/router';
+import { urls } from 'components/router';
+import { FullPokemon } from './full';
 type Props = {};
 export function Pokemon(props: Props) {
   const [pokemonList, setPokemonList] = useState<PokemonData[]>([])
@@ -25,7 +26,7 @@ export function Pokemon(props: Props) {
       setFilteredList(filtered)
     }
   }, [filter, pokemonList, filteredList]);
-  const listSection = () => {
+  const ListSection = () => {
     return (
       <>
         <span>filter:</span><input value={filter} onChange={e => setFilter(e.target.value)} />
@@ -33,11 +34,13 @@ export function Pokemon(props: Props) {
       </>
     )
   }
-  const paths = Object.keys(urls);
+  const paths = Object.keys(urls['/']);
+  console.log(paths[0])
   return (
     <section>
       <Switch>
-        <Route exact path={paths[0]} />
+        <Route exact path={`/${paths[0]}`} render={() => <ListSection />} />
+        <Route exact path={`/${paths[0]}/:name`} component={FullPokemon} />
       </Switch>
     </section>
   )

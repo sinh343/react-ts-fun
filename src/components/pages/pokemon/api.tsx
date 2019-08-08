@@ -18,3 +18,14 @@ export const getFirstTwenty = async () => {
     console.error(error)
   }
 }
+
+export const getFullPokemon = async (name:string) => {
+  try {
+    const resp = await safeFetch(`${pokemonApiUrl}/pokemon/${name}`)
+    const body = await resp.json()
+    console.log(body);
+    return body
+  } catch (error) {
+    console.error(error)
+  }
+}

@@ -39,7 +39,7 @@ export function Router() {
           <Route exact path='/2' render={() => Page2} />
           <Route exact path='/3' render={() => Page3} />
           <Route path='/4' component={TestParentPage} />
-          <Route exact path='/pokemon' component={Pokemon} />
+          <Route path='/pokemon' component={Pokemon} />
         </Switch>
       </main>
     </div>

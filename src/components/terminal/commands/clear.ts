@@ -1,5 +1,4 @@
 import { Props as TerminalProps } from 'components/terminal'
-import { pathParser } from '../pathParser';
 
 export class TerminalArgumentError extends Error { }
 
