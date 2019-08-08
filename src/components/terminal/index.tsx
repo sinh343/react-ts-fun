@@ -35,6 +35,7 @@ function BaseTerminal(props: Props) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!value) return; // returns early on empty submit
     const [command, ...commandArgs] = parseSubmitedValue(value);
     setValue('');
 
