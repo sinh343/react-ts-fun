@@ -8,7 +8,6 @@ export function cd(props: TerminalProps, location: string) {
     throw new TerminalArgumentError('args is empty')
   }
   const pathRoutes = pathParser(props, location);
-  console.log(pathRoutes);
-  props.history.push(pathRoutes.join('/'));
+  props.history.push(`/${pathRoutes.join('/')}`);
   props.submitLS([] as string[]) // reset ls list every command
 }

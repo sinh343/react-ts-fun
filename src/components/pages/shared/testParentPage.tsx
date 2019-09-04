@@ -7,6 +7,7 @@ function BaseTestParentPage() {
   const rootKeys = Object.keys(urls['/']);
   const basePath = rootKeys[rootKeys.length - 1];
   const childrenPath = Object.keys(urls['/']["/4"]);
+  console.log(childrenPath)
   return (
     <Switch>
       <Route path={`${basePath}`} exact render={() => <h1>4</h1>} />
