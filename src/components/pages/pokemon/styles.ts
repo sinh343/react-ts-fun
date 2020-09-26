@@ -10,6 +10,6 @@ const pokemonInfo: CSSProperties = {
   padding: '8px',
 }
 
-const styles = { pokemonList,pokemonInfo }
+const styles = { pokemonList, pokemonInfo }
 
-export const useStyles = createUseStyles(styles);
+export const useStyles = createUseStyles(styles as any);
