@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/react-ts-fun/static/css/main.f40bec73.chunk.css",
+    "main.js": "/react-ts-fun/static/js/main.9277b84c.chunk.js",
+    "main.js.map": "/react-ts-fun/static/js/main.9277b84c.chunk.js.map",
+    "runtime-main.js": "/react-ts-fun/static/js/runtime-main.a30e878f.js",
+    "runtime-main.js.map": "/react-ts-fun/static/js/runtime-main.a30e878f.js.map",
+    "static/js/2.cdc0dc9a.chunk.js": "/react-ts-fun/static/js/2.cdc0dc9a.chunk.js",
+    "static/js/2.cdc0dc9a.chunk.js.map": "/react-ts-fun/static/js/2.cdc0dc9a.chunk.js.map",
+    "index.html": "/react-ts-fun/index.html",
+    "precache-manifest.45f8675b039697379ddecd915d4ef220.js": "/react-ts-fun/precache-manifest.45f8675b039697379ddecd915d4ef220.js",
+    "service-worker.js": "/react-ts-fun/service-worker.js",
+    "static/css/main.f40bec73.chunk.css.map": "/react-ts-fun/static/css/main.f40bec73.chunk.css.map",
+    "static/js/2.cdc0dc9a.chunk.js.LICENSE.txt": "/react-ts-fun/static/js/2.cdc0dc9a.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/react-ts-fun/static/media/logo.ee7cd8ed.svg",
+    "static/media/pokeball.svg": "/react-ts-fun/static/media/pokeball.2b4798f5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a30e878f.js",
+    "static/js/2.cdc0dc9a.chunk.js",
+    "static/css/main.f40bec73.chunk.css",
+    "static/js/main.9277b84c.chunk.js"
+  ]
+}
